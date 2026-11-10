@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>杨锋 · 软件测试（功能 / 接口 / 性能）</title>
+<meta name="description" content="杨锋的个人主页 —— 软件技术专业，求职软件测试实习生：功能用例设计、接口抓包调试、JMeter 性能压测与瓶颈定位。" />
+<meta name="author" content="杨锋" />
+<meta property="og:title" content="杨锋 · 软件测试（功能 / 接口 / 性能）" />
+<meta property="og:description" content="黑盒用例 + 接口抓包 + JMeter 压测，独立完成两条完整测试闭环。" />
+<meta property="og:type" content="website" />
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="assets/css/style.css" />
+<noscript><style>.reveal{opacity:1!important;translate:none!important}</style></noscript>
+</head>
+<body>
+
+<!-- 顶部滚动进度 -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ============ 导航 ============ -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#home" class="brand">
+      <span class="brand__mark">YF</span>
+      <span class="brand__text">杨锋<em>/ 软件测试</em></span>
+    </a>
+
+    <nav class="nav__links" id="navLinks">
+      <a href="#about" class="nav__link">关于我</a>
+      <a href="#skills" class="nav__link">专业技能</a>
+      <a href="#projects" class="nav__link">测试项目</a>
+      <a href="#edu" class="nav__link">教育背景</a>
+      <a href="#contact" class="nav__link">联系我</a>
+    </nav>
+
+    <div class="nav__actions">
+      <button class="icon-btn" id="themeToggle" aria-label="切换配色" title="切换配色">
+        <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.4M12 19v2.4M4.6 12H2.2M21.8 12h-2.4M6.4 6.4 4.7 4.7M19.3 19.3l-1.7-1.7M17.6 6.4l1.7-1.7M4.7 19.3l1.7-1.7"/></svg>
+        <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 1 1 9.4 3.5a7.2 7.2 0 0 0 11.1 11.1Z"/></svg>
+      </button>
+      <a href="assets/杨锋-软件测试-简历.pdf" class="btn btn--ghost btn--sm" download>下载简历</a>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="打开菜单" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ 首屏 ============ -->
+  <section class="hero" id="home">
+    <div class="hero__bg" aria-hidden="true">
+      <span class="blob blob--1"></span>
+      <span class="blob blob--2"></span>
+      <span class="grid"></span>
+    </div>
+
+    <div class="wrap hero__inner">
+      <div class="hero__copy">
+        <p class="badge reveal">
+          <span class="badge__dot"></span>
+          2027 届 · 求职：软件测试实习生（可转测试开发）
+        </p>
+
+        <h1 class="hero__title reveal" data-delay="1">
+          你好，我是<span class="grad">杨锋</span>
+        </h1>
+
+        <p class="hero__desc reveal" data-delay="2">
+          一个把「测得准」当成交付标准的准测试。用 JMeter 把电商登录接口压到 100 并发，
+          从 Nginx 的 502 反查到 <b>php-cgi 进程耗尽</b>，调完 TPS 到 <b>37.0</b>、错误率归零；
+          也用黑盒方法给小程序写了 <b>9 条用例</b>，覆盖三类角色与六状态流转，全部通过。
+        </p>
+
+        <div class="hero__actions reveal" data-delay="3">
+          <a href="#projects" class="btn btn--primary">
+            查看测试项目
+            <svg viewBox="0 0 24 24" class="i-arrow" aria-hidden="true"><path d="M5 12h13M12.5 5.5 19 12l-6.5 6.5"/></svg>
+          </a>
+          <a href="#contact" class="btn btn--line">联系我</a>
+        </div>
+
+        <ul class="hero__meta reveal" data-delay="4">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 6.8 12 12l8.5-5.2"/><rect x="3.2" y="5.2" width="17.6" height="13.6" rx="2.4"/></svg><span>19314643772@163.com</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6.4-5.7 6.4-10.2A6.4 6.4 0 0 0 5.6 10.8C5.6 15.3 12 21 12 21Z"/><circle cx="12" cy="10.6" r="2.3"/></svg><span>南昌 / 江西省内 · 即刻到岗</span></li>
+        </ul>
+      </div>
+
+      <div class="hero__visual reveal" data-delay="3">
+        <div class="term">
+          <div class="term__bar">
+            <span class="dot dot--r"></span><span class="dot dot--y"></span><span class="dot dot--g"></span>
+            <span class="term__name">jmeter-report · 50 并发复测</span>
+          </div>
+          <div class="term__body">
+            <p class="term__cmd">jmeter -n -t login.jmx -l result.jtl <i># ramp-up 10s · loop 60</i></p>
+
+            <div class="term__row">
+              <span class="term__k">samples</span><span class="term__dots"></span><span class="term__v">11,700</span>
+            </div>
+            <div class="term__row">
+              <span class="term__k">tps</span><span class="term__dots"></span><span class="term__v">37.0<em>↑43.4%</em></span>
+            </div>
+            <div class="term__row">
+              <span class="term__k">avg_rt</span><span class="term__dots"></span><span class="term__v">1126 ms<em>↓33.8%</em></span>
+            </div>
+            <div class="term__row">
+              <span class="term__k">p90</span><span class="term__dots"></span><span class="term__v">1482 ms</span>
+            </div>
+            <div class="term__row">
+              <span class="term__k">error_rate</span><span class="term__dots"></span><span class="term__v">0.00 %<em class="warn">was 28.35%</em></span>
+            </div>
+
+            <div class="term__foot">
+              <span class="term__ok">✓ PASS</span>
+              <span>拐点在 30 并发 · 502 已消除</span>
+            </div>
+          </div>
+        </div>
+
+        <ul class="hero__pills">
+          <li>JMeter 5.6.3</li>
+          <li>Fiddler</li>
+          <li>Postman</li>
+          <li>MySQL</li>
+          <li>Python</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <ul class="stats reveal" data-delay="2">
+        <li class="stat">
+          <span class="stat__num" data-count="2" data-suffix="">0</span>
+          <span class="stat__label">完整测试闭环</span>
+        </li>
+        <li class="stat">
+          <span class="stat__num" data-count="10" data-suffix="">0</span>
+          <span class="stat__label">业务场景用例</span>
+        </li>
+        <li class="stat">
+          <span class="stat__num" data-count="11700" data-suffix="">0</span>
+          <span class="stat__label">压测请求数</span>
+        </li>
+        <li class="stat">
+          <span class="stat__num" data-count="43.4" data-suffix="%" data-decimals="1">0</span>
+          <span class="stat__label">50 并发 TPS 提升</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 关于我 ============ -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <header class="sec-head reveal">
+        <span class="sec-head__idx">01</span>
+        <h2 class="sec-head__title">关于我</h2>
+        <p class="sec-head__sub">About&nbsp;Me</p>
+      </header>
+
+      <div class="about">
+        <div class="about__text reveal">
+          <p>
+            我是杨锋，江西软件职业技术大学电子信息学院软件技术专业 2024 级学生，2027 年 6 月毕业。
+            求职方向是 <b>软件测试实习生（可转测试开发）</b>：南昌 / 江西省内，即刻到岗，
+            可连续实习 6 个月以上，接受出差与项目驻场。
+          </p>
+          <p>
+            我把「测」当成交付的一部分。性能这条线，用 JMeter 按 <b>5 / 10 / 30 / 50 / 100</b> 五档并发压
+            LikeShop 登录接口，从 Nginx 的 <code>no live upstreams</code> 反查到 php-cgi 进程耗尽，
+            调优后 TPS 25.8 → 37.0、错误率 28.35% → 0；功能这条线，用等价类、边界值、场景法给报修小程序
+            设计了 9 条黑盒用例，覆盖登录授权、必填校验、状态流转与统计看板。
+          </p>
+          <p>
+            做事顺序基本固定：<b>先看日志、再看监控、最后才动配置</b>；缺陷按严重程度与优先级分开记录，
+            回归不通过就不算修完。写代码是加分项——能读源码定位问题，接口字段和加密规则都能自己啃下来。
+          </p>
+
+          <ul class="pill-row">
+            <li class="pill">黑盒用例设计</li>
+            <li class="pill">接口抓包与调试</li>
+            <li class="pill">JMeter 性能压测</li>
+            <li class="pill">MySQL 造数与查询</li>
+            <li class="pill">缺陷跟踪与报告</li>
+          </ul>
+        </div>
+
+        <aside class="about__card reveal" data-delay="1">
+          <h3 class="about__card-title">基本信息</h3>
+          <dl class="info">
+            <div class="info__row"><dt>姓名</dt><dd>杨锋</dd></div>
+            <div class="info__row"><dt>求职意向</dt><dd>软件测试实习生（可转测试开发）</dd></div>
+            <div class="info__row"><dt>期望地点</dt><dd>南昌 / 江西省内</dd></div>
+            <div class="info__row"><dt>到岗</dt><dd>即刻到岗 · 可实习 6 个月以上</dd></div>
+            <div class="info__row"><dt>学校</dt><dd>江西软件职业技术大学</dd></div>
+            <div class="info__row"><dt>学院</dt><dd>电子信息学院 · 软件技术</dd></div>
+            <div class="info__row"><dt>在校</dt><dd>2024.09 – 2027.06</dd></div>
+            <div class="info__row"><dt>邮箱</dt><dd><a href="mailto:19314643772@163.com">19314643772@163.com</a></dd></div>
+            <div class="info__row"><dt>电话 / 微信</dt><dd><a href="tel:19314643772">19314643772</a></dd></div>
+            <div class="info__row"><dt>GitHub</dt><dd><a href="https://github.com/yf8727" target="_blank" rel="noopener">yf8727</a></dd></div>
+          </dl>
+          <a href="assets/杨锋-软件测试-简历.pdf" class="btn btn--primary btn--block" download>
+            下载 PDF 简历
+            <svg viewBox="0 0 24 24" class="i-arrow" aria-hidden="true"><path d="M12 4v11M12 20.5 6.8 15M12 20.5 17.2 15"/></svg>
+          </a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 专业技能 ============ -->
+  <section class="section section--alt" id="skills">
+    <div class="wrap">
+      <header class="sec-head reveal">
+        <span class="sec-head__idx">02</span>
+        <h2 class="sec-head__title">专业技能</h2>
+        <p class="sec-head__sub">Testing&nbsp;Stack</p>
+      </header>
+
+      <div class="skills">
+        <article class="skill reveal">
+          <div class="skill__icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h9l4 4v13H6Z"/><path d="M9 10.5h7M9 14h7M9 17.5h4"/></svg>
+          </div>
+          <h3 class="skill__title">测试理论与流程</h3>
+          <p class="skill__desc">走完「需求分析 → 用例设计 → 执行 → 缺陷跟踪 → 回归 → 测试报告」全流程；能判缺陷严重程度与优先级。</p>
+          <ul class="tags">
+            <li>等价类 / 边界值</li><li>场景法</li><li>用例设计</li><li>缺陷管理</li><li>回归验证</li>
+          </ul>
+        </article>
+
+        <article class="skill reveal" data-delay="1">
+          <div class="skill__icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16.5V19h16v-2.5"/><path d="M12 3.5v9.5M12 15.5 7.8 11.3M12 15.5 16.2 11.3"/><path d="M4 12V6.5h3.6"/></svg>
+          </div>
+          <h3 class="skill__title">性能测试</h3>
+          <p class="skill__desc">JMeter 线程组设计、CSV 参数化、JSON 提取器关联、响应断言与聚合报告；会非 GUI 命令行压测，能读 TPS / 90% RT / 错误率定位瓶颈。</p>
+          <ul class="tags">
+            <li>JMeter 5.6.3</li><li>梯度负载</li><li>关联提取</li><li>响应断言</li><li>资源监控</li>
+          </ul>
+        </article>
+
+        <article class="skill reveal" data-delay="2">
+          <div class="skill__icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 7.5c3-2.6 6-2.6 8.5 0s5.5 2.6 8.5 0"/><path d="M3.5 13c3-2.6 6-2.6 8.5 0s5.5 2.6 8.5 0"/><path d="M3.5 18.5c3-2.6 6-2.6 8.5 0s5.5 2.6 8.5 0"/></svg>
+          </div>
+          <h3 class="skill__title">接口与抓包</h3>
+          <p class="skill__desc">Fiddler 抓包拆请求结构与返回字段，Postman 调接口；熟悉 HTTP 与常见状态码，能顺着 token 串起接口链路。</p>
+          <ul class="tags">
+            <li>Fiddler</li><li>Postman</li><li>HTTP / 状态码</li><li>token 鉴权</li><li>接口用例</li>
+          </ul>
+        </article>
+
+        <article class="skill reveal" data-delay="3">
+          <div class="skill__icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="6" rx="7.4" ry="3"/><path d="M4.6 6v12c0 1.7 3.3 3 7.4 3s7.4-1.3 7.4-3V6"/><path d="M4.6 12c0 1.7 3.3 3 7.4 3s7.4-1.3 7.4-3"/></svg>
+          </div>
+          <h3 class="skill__title">数据库与脚本</h3>
+          <p class="skill__desc">MySQL 多表联查、分组聚合、存储过程批量造数；Python（pymysql）写数据处理脚本；Linux 下看日志查端口。</p>
+          <ul class="tags">
+            <li>MySQL</li><li>存储过程</li><li>Python / pymysql</li><li>Linux top / df / grep</li><li>日志排查</li>
+          </ul>
+        </article>
+
+        <article class="skill reveal" data-delay="4">
+          <div class="skill__icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="4.2" width="17.6" height="6" rx="2"/><rect x="3.2" y="13.8" width="17.6" height="6" rx="2"/><path d="M7 7.2h.01M7 16.8h.01"/></svg>
+          </div>
+          <h3 class="skill__title">环境与调优</h3>
+          <p class="skill__desc">读 Nginx 日志（502 / no live upstreams）、调 php-cgi 进程数、开 OPcache、改 MySQL 连接数与缓冲池，再复测验证。</p>
+          <ul class="tags">
+            <li>Nginx 配置与日志</li><li>php-cgi 进程</li><li>OPcache</li><li>max_connections</li><li>innodb_buffer_pool</li>
+          </ul>
+        </article>
+
+        <article class="skill reveal" data-delay="5">
+          <div class="skill__icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2 13.9 9l5.8 1.9-5.8 1.9L12 18.6l-1.9-5.8L4.3 10.9 10.1 9Z"/><path d="M18.8 17.2l.7 2.1 2.1.7-2.1.7-.7 2.1-.7-2.1-2.1-.7 2.1-.7Z"/></svg>
+          </div>
+          <h3 class="skill__title">开发与工程化</h3>
+          <p class="skill__desc">JavaScript（ES6）与小程序云开发全栈，能读代码定位问题；Git 版本管理，AI 工具辅助但逐段验证。</p>
+          <ul class="tags">
+            <li>JavaScript ES6</li><li>微信云开发</li><li>Git</li><li>Cursor / Copilot</li><li>代码级排障</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="marquee reveal" aria-label="工具链">
+        <div class="marquee__track">
+          <span>JMeter</span><span>Fiddler</span><span>Postman</span><span>MySQL</span><span>Python</span><span>Linux</span><span>Nginx</span><span>Git</span><span>JavaScript</span><span>云开发</span><span>存储过程</span><span>CSV 参数化</span><span>JSON 提取器</span><span>响应断言</span><span>聚合报告</span><span>缺陷跟踪</span>
+          <span>JMeter</span><span>Fiddler</span><span>Postman</span><span>MySQL</span><span>Python</span><span>Linux</span><span>Nginx</span><span>Git</span><span>JavaScript</span><span>云开发</span><span>存储过程</span><span>CSV 参数化</span><span>JSON 提取器</span><span>响应断言</span><span>聚合报告</span><span>缺陷跟踪</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 项目经历 ============ -->
+  <section class="section" id="projects">
+    <div class="wrap">
+      <header class="sec-head reveal">
+        <span class="sec-head__idx">03</span>
+        <h2 class="sec-head__title">测试项目</h2>
+        <p class="sec-head__sub">Selected&nbsp;Works</p>
+      </header>
+
+      <div class="projects">
+
+        <article class="project reveal">
+          <div class="project__top">
+            <div class="project__no">01</div>
+            <div class="project__lead">
+              <h3 class="project__title">Likeshop 电商平台登录接口性能测试</h3>
+              <p class="project__role">课程实训 · 独立完成 · 2026.09</p>
+            </div>
+            <span class="project__badge project__badge--warm">Performance</span>
+          </div>
+
+          <ul class="tags tags--wide">
+            <li>JMeter 5.6.3</li><li>Fiddler 抓包</li><li>MySQL 存储过程</li><li>Python / pymysql</li><li>Nginx 日志</li><li>容量评估</li>
+          </ul>
+
+          <div class="project__body">
+            <div class="project__col">
+              <h4>需求分析与用例设计</h4>
+              <p>用 Fiddler 抓包拆解登录接口 <code>POST /api/account/login</code> 的请求结构与返回字段（<code>data.token</code> 供后续接口鉴权），据此制定响应时间、TPS、成功率、资源利用率 <b>四类指标</b>，设计 <b>10 个业务场景用例</b>。</p>
+
+              <h4>测试数据构造</h4>
+              <p>用 MySQL 存储过程与 Python（pymysql）脚本批量构造 <b>10 万条</b>用户数据；逆向分析并复刻 LikeShop 加盐加密规则 <code>md5("y"+salt+"x")+"2020"</code>，解决「造出来的数据无法登录」。</p>
+            </div>
+
+            <div class="project__col">
+              <h4>脚本开发与执行</h4>
+              <p>按「参数化 → 请求 → 提取 → 断言 → 监听」结构开发 JMeter 脚本，按 <b>5 / 10 / 30 / 50 / 100</b> 五档并发梯度执行（Ramp-Up 10 秒、循环 60 次，累计 <b>11700 次</b>请求），同步采集 CPU、内存与磁盘 IO。</p>
+
+              <h4>瓶颈定位</h4>
+              <p>判定系统在 <b>30 并发后出现拐点</b>；100 并发时 20 个 php-cgi 进程全部崩溃、Nginx 返回 <b>502</b>（no live upstreams），错误率升至 28.35%。结合日志与监控锁定三大根因：php-cgi 进程数不足、未启用 OPcache、MySQL 默认配置保守。</p>
+
+              <h4>优化与验证</h4>
+              <ul class="ticks">
+                <li>50 并发 TPS <b>25.8 → 37.0</b>（↑43.4%）</li>
+                <li>响应时间 <b>1701ms → 1126ms</b>（↓33.8%）</li>
+                <li>100 并发错误率 <b>28.35% → 0</b></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="project__foot">
+            <div class="metric"><span class="metric__k">11700</span><span class="metric__v">次压测请求</span></div>
+            <div class="metric"><span class="metric__k">5</span><span class="metric__v">档并发梯度</span></div>
+            <div class="metric"><span class="metric__k">+43.4%</span><span class="metric__v">TPS 提升 · 错误率归零</span></div>
+          </div>
+        </article>
+
+        <article class="project reveal" data-delay="1">
+          <div class="project__top">
+            <div class="project__no">02</div>
+            <div class="project__lead">
+              <h3 class="project__title">宿舍便民报修微信小程序</h3>
+              <p class="project__role">毕业设计 · 独立开发 + 系统测试 · 2026.07</p>
+            </div>
+            <span class="project__badge">系统测试</span>
+          </div>
+
+          <ul class="tags tags--wide">
+            <li>微信云开发</li><li>5 集合建模</li><li>六状态流转</li><li>订阅消息</li><li>黑盒用例 TC-01~09</li><li>权限校验</li>
+          </ul>
+
+          <div class="project__body">
+            <div class="project__col">
+              <h4>项目背景</h4>
+              <p>针对高校宿舍纸质报修流程繁琐、维修进度无法追踪的痛点，用微信小程序云开发（Serverless）实现报修系统，免去服务器采购与运维成本。</p>
+
+              <h4>数据库与服务端设计</h4>
+              <p>设计 <b>user、repair_type、repair_order、repair_worker、evaluation</b> 五个集合及关联关系，定义工单六状态流转（待受理 → 已派单 → 维修中 → 待确认 → 已完成 → 已关闭）；编写 <code>login</code>、<code>submitRepair</code>、<code>assignOrder</code> 等云函数，基于 openid 识别学生 / 维修人员 / 管理员三类角色并控制操作权限。</p>
+            </div>
+
+            <div class="project__col">
+              <h4>功能实现</h4>
+              <p>在线报修（类型选择、故障描述、图片上传云存储）、进度查询、催办、确认与评价；管理端工单审核 / 派单 / 改派 / 关闭、维修人员管理与聚合统计；接入微信订阅消息在关键节点推送进度。</p>
+
+              <h4>系统测试</h4>
+              <p>以黑盒方法设计 <b>9 条功能测试用例（TC-01 ~ TC-09）</b>，覆盖登录授权、报修提交、必填校验、进度查询、催办、派单、状态流转、评价与数据统计，<b>全部通过</b>；状态跳转与权限边界按角色逐一核对，防止越权操作。</p>
+            </div>
+          </div>
+
+          <div class="project__foot">
+            <div class="metric"><span class="metric__k">5</span><span class="metric__v">集合 · 六状态流转</span></div>
+            <div class="metric"><span class="metric__k">3</span><span class="metric__v">角色权限体系</span></div>
+            <div class="metric"><span class="metric__k">9</span><span class="metric__v">黑盒用例 TC-01~09 全通过</span></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 教育背景 & 自我评价 ============ -->
+  <section class="section section--alt" id="edu">
+    <div class="wrap">
+      <header class="sec-head reveal">
+        <span class="sec-head__idx">04</span>
+        <h2 class="sec-head__title">教育背景 &amp; 自我评价</h2>
+        <p class="sec-head__sub">Education&nbsp;&amp;&nbsp;Strengths</p>
+      </header>
+
+      <div class="edu">
+        <div class="timeline reveal">
+          <div class="timeline__item">
+            <span class="timeline__dot"></span>
+            <p class="timeline__time">2024.09 – 2027.06</p>
+            <h3 class="timeline__title">江西软件职业技术大学</h3>
+            <p class="timeline__sub">电子信息学院 · 软件技术（专科）</p>
+            <ul class="tags tags--soft">
+              <li>软件测试技术</li><li>性能测试项目实训</li><li>数据库原理与应用</li><li>Java 程序设计</li><li>计算机网络</li><li>Web 前端开发</li>
+            </ul>
+          </div>
+          <div class="timeline__item timeline__item--ghost">
+            <span class="timeline__dot"></span>
+            <p class="timeline__time">2026.07 / 2026.09</p>
+            <h3 class="timeline__title">两段完整闭环</h3>
+            <p class="timeline__sub">一个系统从开发做到用例验证，一个接口从压测做到错误率归零</p>
+          </div>
+        </div>
+
+        <div class="values">
+          <article class="value reveal">
+            <span class="value__no">01</span>
+            <h3>能独立走完闭环</h3>
+            <p>需求 → 开发 / 测试 → 上线验证，两个项目都从零做到可运行、可验证、可复测。</p>
+          </article>
+          <article class="value reveal" data-delay="1">
+            <span class="value__no">02</span>
+            <h3>排障先看日志</h3>
+            <p>先日志、再监控、最后动配置。Nginx 的 no live upstreams 直接锁定 php-cgi 进程耗尽，改完错误率归零，不靠反复重试猜。</p>
+          </article>
+          <article class="value reveal" data-delay="2">
+            <span class="value__no">03</span>
+            <h3>目标明确、能长期投入</h3>
+            <p>可保证 6 个月以上连续实习，接受出差与项目驻场；愿意从执行用例开始，把自动化与接口测试一起补上。</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 联系 ============ -->
+  <section class="section contact" id="contact">
+    <div class="wrap">
+      <header class="sec-head sec-head--center reveal">
+        <span class="sec-head__idx">05</span>
+        <h2 class="sec-head__title">聊聊实习机会</h2>
+        <p class="sec-head__sub">Let's&nbsp;Talk&nbsp;Testing</p>
+      </header>
+
+      <p class="contact__lead reveal">
+        正在找软件测试实习（可转测试开发）机会，南昌 / 江西省内，即刻到岗、可实习 6 个月以上。<br />
+        功能、接口、性能三条线都能上手，简历与项目细节欢迎邮件或微信来聊。
+      </p>
+
+      <div class="contact__grid">
+        <button class="contact__card reveal" id="copyMail" data-copy="19314643772@163.com">
+          <span class="contact__icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="5.2" width="17.6" height="13.6" rx="2.4"/><path d="M3.5 6.8 12 12l8.5-5.2"/></svg>
+          </span>
+          <span class="contact__k">邮箱</span>
+          <span class="contact__v">19314643772@163.com</span>
+          <span class="contact__hint">点击复制</span>
+        </button>
+
+        <a class="contact__card reveal" data-delay="1" href="tel:19314643772">
+          <span class="contact__icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 3.6h3l1.5 4-2 1.4a11 11 0 0 0 5.3 5.3l1.4-2 4 1.5v3c0 1.4-1.1 2.5-2.5 2.5A15.6 15.6 0 0 1 4.7 6.1c0-1.4 1.1-2.5 2.5-2.5Z"/></svg>
+          </span>
+          <span class="contact__k">电话 / 微信</span>
+          <span class="contact__v">19314643772</span>
+          <span class="contact__hint">同号可加微信</span>
+        </a>
+
+        <a class="contact__card reveal" data-delay="2" href="https://github.com/yf8727" target="_blank" rel="noopener">
+          <span class="contact__icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19.5c-3.6 1.1-3.6-1.9-5-2.3M15 21v-3.1a2.7 2.7 0 0 0-.8-2.2c2.7-.3 4.8-1.4 4.8-5.7a4.5 4.5 0 0 0-1.2-3.1 4.2 4.2 0 0 0-.1-3.1s-1-.3-3.3 1.2a11.4 11.4 0 0 0-6 0C6 3.4 5 3.7 5 3.7a4.2 4.2 0 0 0-.1 3.1A4.5 4.5 0 0 0 3.7 9.9c0 4.3 2.1 5.4 4.8 5.7A2.7 2.7 0 0 0 7.7 17.8V21"/></svg>
+          </span>
+          <span class="contact__k">GitHub</span>
+          <span class="contact__v">github.com/yf8727</span>
+          <span class="contact__hint">查看代码</span>
+        </a>
+
+        <a class="contact__card reveal" data-delay="3" href="assets/杨锋-软件测试-简历.pdf" download>
+          <span class="contact__icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 2.8h7.2l4.3 4.3v14.1h-11.5Z"/><path d="M13.5 2.9v4.4h4.4"/><path d="M9.2 15.5h5.6"/></svg>
+          </span>
+          <span class="contact__k">简历</span>
+          <span class="contact__v">杨锋-软件测试-简历.pdf</span>
+          <span class="contact__hint">下载 PDF</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <p class="footer__brand">杨锋<span class="dot">.</span></p>
+    <p class="footer__copy">© <span id="year">2026</span> 杨锋 · 软件测试方向 · 个人主页</p>
+    <a href="#home" class="footer__top">回到顶部 ↑</a>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

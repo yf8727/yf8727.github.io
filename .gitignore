@@ -1,0 +1,7 @@
+# 本地/临时
+__pycache__/
+*.pyc
+_thumbs/
+# 部署时不需要的占位资源（需要保留就删掉这两行）
+screenshots/
+tools/
